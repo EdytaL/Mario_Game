@@ -5,7 +5,8 @@ document.addEventListener("DOMContentLoaded", function(){
 	var ctx = canvas.getContext("2d");
     var btnStart = document.querySelector("#start");
     var btnStop  = document.querySelector("#stop");
-    
+    var divAlert = document.querySelectorAll(".alert");
+    console.log(divAlert)
     
     //Variables game field
 	var widthBoard = 350;
@@ -27,18 +28,13 @@ document.addEventListener("DOMContentLoaded", function(){
 		drawSnakeBody();
 		drawCoin(); 
 		
-		//Set interval for moving snake
-        
-        
-            
+		//Set interval for moving snake   
         if(typeof game_loop != "undefined"){ clearInterval(game_loop);
         };
             
         game_loop = setInterval(createElements, 80);
        
-        
-        
-                                  
+                                 
         btnStop.addEventListener("click", function(event) {
             clearInterval(game_loop);
         })
@@ -46,6 +42,14 @@ document.addEventListener("DOMContentLoaded", function(){
 	};
     
     btnStart.addEventListener("click", function(event) {
+        
+        for(var i=0; i < divAlert.length; i++) {
+            
+        console.log("pętla")
+        divAlert[i].classList.remove("alert");
+        divAlert[i].classList.add("alert-move");
+        
+        }
         init();   
     })
 	

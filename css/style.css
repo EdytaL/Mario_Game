@@ -12,7 +12,7 @@ body {
 .container {
     position: relative;
     width: 600px;
-    margin: 0 auto;
+    margin: 150px auto;
     display: table;
     
 }
@@ -23,4 +23,24 @@ canvas {
     background-color:crimson;
     margin: 0 auto;
     display: flex;
+}
+
+p {
+    padding: 20px;
+}
+.alert {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 300px;
+    text-align: center;
+}
+
+.alert-move {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-top: 50px;
 }
