@@ -1,6 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     background-color:darkgray;
 }
+
+
+.container {
+    position: relative;
+    width: 600px;
+    margin: 0 auto;
+    display: table;
+    
+}
+
 canvas {
-border: 1px solid black;
+    position: relative; 
+    border: 1px solid black;
+    background-color:crimson;
+    margin: 0 auto;
+    display: flex;
 }

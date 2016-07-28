@@ -3,6 +3,9 @@ document.addEventListener("DOMContentLoaded", function(){
 	//Variables - DOM searching
 	var canvas = document.querySelector("#canvas");
 	var ctx = canvas.getContext("2d");
+    var btnStart = document.querySelector("#start");
+    var btnStop  = document.querySelector("#stop");
+    
     
     //Variables game field
 	var widthBoard = 350;
@@ -15,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function(){
 	var score = 0;
 	
 	var snake; 
+    
 	
 	function init(){
         
@@ -24,10 +28,27 @@ document.addEventListener("DOMContentLoaded", function(){
 		drawCoin(); 
 		
 		//Set interval for moving snake
-		if(typeof game_loop != "undefined") clearInterval(game_loop);
-		game_loop = setInterval(createElements, 80);
+        
+        
+            
+        if(typeof game_loop != "undefined"){ clearInterval(game_loop);
+        };
+            
+        game_loop = setInterval(createElements, 80);
+       
+        
+        
+                                  
+        btnStop.addEventListener("click", function(event) {
+            clearInterval(game_loop);
+        })
+        
 	};
-	init();
+    
+    btnStart.addEventListener("click", function(event) {
+        init();   
+    })
+	
 	
 	function drawSnakeBody(){
         //Draws snake body 
