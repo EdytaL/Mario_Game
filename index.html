@@ -10,9 +10,19 @@
         
         <div class="container">
             <header>
-                <p>Snake</p>
+                <p>Snake game</p>
                 <h3>by Java Script</h3>
             </header>
+            <nav >
+                <button class="myButton">Home</button>
+                <button class="myButton">Game rules</button>
+                <button class="myButton ">Source code</button>   
+            </nav>
+            
+            <nav class="points">
+                <div class="myButton  hidden">Level 1</div>
+                <div class="myButton hidden">Score 0</div>
+            </nav>
             
             <canvas id="canvas" width="350" height="350"></canvas>
             
@@ -20,7 +30,7 @@
                 <p>Press start to play!</p>
 
                 <button id="start" class="myButton">START</button>
-                <button id="stop" class="myButton">STOP</button>
+                <button id="stop" class="myButton hidden">STOP</button>
                 
             </div>
         </div>

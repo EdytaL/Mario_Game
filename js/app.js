@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function(){
     var btnStart = document.querySelector("#start");
     var btnStop  = document.querySelector("#stop");
     var divAlert = document.querySelectorAll(".alert");
-    console.log(divAlert)
+    var navPoints = document.querySelector(".points");
     
     //Variables game field
 	var widthBoard = 350;
@@ -50,6 +50,8 @@ document.addEventListener("DOMContentLoaded", function(){
         divAlert[i].classList.add("alert-move");
         
         }
+       btnStop.classList.remove("hidden"); navPoints.firstElementChild.classList.remove("hidden");
+        navPoints.lastElementChild.classList.remove("hidden");
         init();   
     })
 	
@@ -70,8 +72,8 @@ document.addEventListener("DOMContentLoaded", function(){
         //Generates random coins's position X and Y 
 	{
 		coin = {
-                x: Math.floor(Math.random() * (widthBoard/cellSize)) + 1,
-                y: Math.floor(Math.random() * (heighBoard/cellSize)) + 1};
+                x: Math.floor(Math.random() * (widthBoard/cellSize)),
+                y: Math.floor(Math.random() * (heighBoard/cellSize))};
             
 	}
 	
