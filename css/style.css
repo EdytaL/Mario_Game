@@ -74,22 +74,29 @@ header h3 {
 }
 
 nav {
-    display: flex;
-    justify-content: center;
-    width: 350px;
-    padding: 10px;
+    display: inline-block;
+    width: 356px;
+    padding-bottom: 10px;
 }
     
 
 nav button {
-    margin-left: 10px;
+    
+    margin-left: 0;
+    width: 115px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 canvas {
     position: relative; 
     border: 1px solid #DC3D24;
+    -moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
     background-color: #E3AE57;
     margin: 0 auto;
     display: flex;
+    
 }
 
 
@@ -140,14 +147,15 @@ div {
 }
 .alert {
     position: absolute;
-    left: 0;
-    right: 0;
+    left: 37%;
     top: 300px;
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
     justify-content: center;
     align-content: center;
+    flex-direction: column;
     text-align: center;
-    border: 1px solid black;
     font-size: 25px;
 }
 

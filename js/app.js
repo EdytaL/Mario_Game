@@ -7,6 +7,10 @@ document.addEventListener("DOMContentLoaded", function(){
     var btnStop  = document.querySelector("#stop");
     var divAlert = document.querySelectorAll(".alert");
     var navPoints = document.querySelector(".points");
+    var scoreDiv = navPoints.lastElementChild;
+    var parAlert = divAlert[0].firstElementChild;
+    
+    
     
     //Variables game field
 	var widthBoard = 350;
@@ -32,11 +36,12 @@ document.addEventListener("DOMContentLoaded", function(){
         if(typeof game_loop != "undefined"){ clearInterval(game_loop);
         };
             
-        game_loop = setInterval(createElements, 80);
+        game_loop = setInterval(createElements, 120);
        
-                                 
+        //When btnStop is down, stop and restart game; reset var score                         
         btnStop.addEventListener("click", function(event) {
             clearInterval(game_loop);
+            score = 0;
         })
         
 	};
@@ -45,14 +50,15 @@ document.addEventListener("DOMContentLoaded", function(){
         
         for(var i=0; i < divAlert.length; i++) {
             
-        console.log("pętla")
         divAlert[i].classList.remove("alert");
         divAlert[i].classList.add("alert-move");
         
         }
-       btnStop.classList.remove("hidden"); navPoints.firstElementChild.classList.remove("hidden");
+        btnStop.classList.remove("hidden"); navPoints.firstElementChild.classList.remove("hidden");
         navPoints.lastElementChild.classList.remove("hidden");
-        init();   
+        init();  
+        
+        parAlert.parentNode.removeChild(parAlert);
     })
 	
 	
@@ -68,9 +74,9 @@ document.addEventListener("DOMContentLoaded", function(){
 	};
 	
 	
-	function drawCoin()
+	function drawCoin(){
         //Generates random coins's position X and Y 
-	{
+	
 		coin = {
                 x: Math.floor(Math.random() * (widthBoard/cellSize)),
                 y: Math.floor(Math.random() * (heighBoard/cellSize))};
@@ -81,20 +87,22 @@ document.addEventListener("DOMContentLoaded", function(){
 	function createElements(){
         
 		//Draw the game field
-		ctx.fillStyle = "white";
+		ctx.fillStyle = "#E3AE57";
 		ctx.fillRect(0, 0, widthBoard, heighBoard);
-		ctx.strokeStyle = "black";
-		ctx.strokeRect(0, 0, widthBoard, heighBoard);
 		
 		var snakePositionX = snake[0].x;
 		var snakePositionY = snake[0].y;
 		
         
-        //Statemenst -  move snake depend of keydown
-		if (direction == "right"){            snakePositionX++;
-        } else if (direction == "left"){      snakePositionX--;
-        } else if(direction== "up") {        snakePositionY--;
-        } else if(direction == "down"){      snakePositionY++;
+        //Statements -  move snake depend of keydown
+		if (direction == "right"){            
+            snakePositionX++;
+        } else if (direction == "left"){      
+            snakePositionX--;
+        } else if(direction== "up") {        
+            snakePositionY--;
+        } else if(direction == "down"){      
+            snakePositionY++;
         }
 		
 		//Collision statement - if snake is on the border of canvas - reset game
@@ -102,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function(){
 		{
 			alert("Game over");
             score = 0;
-            init();  
+//            init();  
             return;
 		}
 		
@@ -132,15 +140,17 @@ document.addEventListener("DOMContentLoaded", function(){
 		
 		
 		createCell(coin.x, coin.y);
-		//Lets createElements the score
+        
+		//Add text in scoreDic when snake takes coins
 		var score_text = "Score: " + score;
-		ctx.fillText(score_text, 5, heighBoard-5);
+//		ctx.fillText(score_text, 5, heighBoard-5);
+        scoreDiv.innerText = score_text;
 	}
 	
 	
 	function createCell(x, y){ 
         //Draw elements of the body of snake
-		ctx.fillStyle = "blue";
+		ctx.fillStyle = "#DC3D24";
 		ctx.fillRect(x*cellSize, y*cellSize, cellSize, cellSize);
 		ctx.strokeStyle = "white";
 		ctx.strokeRect(x*cellSize, y*cellSize, cellSize, cellSize);
