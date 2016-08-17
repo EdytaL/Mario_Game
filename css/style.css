@@ -88,12 +88,13 @@ nav a {
 }
     
 
-nav button {
+nav .myButton {
     
     margin-left: 0;
     width: 150px;
     padding-left: 15px;
     padding-right: 15px;
+    text-align: center;
 }
 
 .game_rules {
@@ -116,7 +117,7 @@ nav button {
 /*--------sticky menu-----------------*/
 .sticky{
     position: fixed;
-    top: 300px;
+    top: 280px;
     left: 400px;
     z-index: 10;
 }
