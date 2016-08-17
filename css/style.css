@@ -42,7 +42,7 @@ body {
 
 .container {
     position: relative;
-    width: 600px;
+    width: 800px;
     margin: 30px auto;
     display: flex;
     justify-content: center;
@@ -75,19 +75,53 @@ header h3 {
 }
 
 nav {
-    display: inline-block;
-    width: 356px;
-    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-around;
+    width: 500px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
 }
     
 
 nav button {
     
     margin-left: 0;
-    width: 115px;
-    padding-left: 10px;
-    padding-right: 10px;
+    width: 150px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
+
+.game_rules {
+    margin-top: 50px;
+    font-size: 28px;
+    letter-spacing: 2px;
+    text-align: center;
+    color: white;
+    width: 500px;
+    visibility: hidden;
+}
+
+.game_rules p{
+    margin-top: 50px;
+}
+
+.visible {
+    visibility: visible;
+}
+/*--------sticky menu-----------------*/
+.sticky{
+    position: fixed;
+    top: 300px;
+    left: 400px;
+    z-index: 10;
+}
+
+/*-----------------------------------*/
 canvas {
     position: relative; 
     border: 1px solid #DC3D24;
@@ -121,7 +155,7 @@ canvas {
 	cursor:pointer;
 	color:#ffffff;
 	font-family: 'OSP-DIN', 'Arial', 'sans-serif';
-	font-size:18px;
+	font-size:24px;
 	padding:6px 20px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #854629;
@@ -147,8 +181,8 @@ div {
 }
 .alert {
     position: absolute;
-    left: 37%;
-    top: 300px;
+    left: 328px;
+    top: 400px;
     margin-left: auto;
     margin-right: auto;
     display: flex;
@@ -161,8 +195,8 @@ div {
 
 .alert-move {
     position: absolute;
-    right: 0;
-    bottom: 0;
+    right: 50px;
+    bottom: 120px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -171,13 +205,16 @@ div {
 }
 .alert-move button{
     margin-top: 10px;
+    width: 150px;
+    height: 40px;
+    font-size: 24px;
 }
 
 
 .points {
     position: absolute;
-    left: 0;
-    bottom: 0;
+    left: 50px;
+    bottom: 120px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -186,9 +223,12 @@ div {
 }
 
 .points div {
-     margin-top: 10px;
-    
+    margin-top: 10px;
+    width: 150px;
+    height: 40px;
+    font-size: 24px;
 }
+
 .hidden {
     display: none;
 }

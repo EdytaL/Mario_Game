@@ -10,7 +10,11 @@ document.addEventListener("DOMContentLoaded", function(){
     var levelDiv = navPoints.firstElementChild;
     var scoreDiv = navPoints.lastElementChild;
     var parAlert = divAlert[0].firstElementChild;
-    
+    var navBar = document.querySelector("nav");
+    var navElementPositionTop = navBar.offsetTop;
+    var gameRulesBtn = document.querySelector(".rules");
+    var gameRulesDiv = document.querySelector(".game_rules");
+    var gameRulesDivPositionTop = gameRulesDiv.offsetTop;
     
     
     //Variables game field
@@ -28,8 +32,8 @@ document.addEventListener("DOMContentLoaded", function(){
     var interval = 120;
     
     //event prevent scrolling page
-	window.addEventListener("keydown",         function(event) {
-        // space and arrow keys
+	window.addEventListener("keydown", function(event) {
+        // space and arrow keys 
             if([32, 37, 38, 39, 40].indexOf(event.keyCode) > -1) {
             event.preventDefault();
             }
@@ -80,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function(){
         };
     }
     
-    //when btnStart is pushed, restart game
+    //When btnStart is pushed, restart game
     btnStart.addEventListener("click", function(event) {
         
         for(var i=0; i < divAlert.length; i++) {
@@ -241,5 +245,29 @@ document.addEventListener("DOMContentLoaded", function(){
         
         
 	})
+    
+    
+    
+    
+    //event on game's rules btn - scroll to game's description
+    gameRulesBtn.addEventListener("click", function(event) {
+        
+        //event for sticky menu
+
+        window.addEventListener("scroll", function(event) {
+
+        var pixels = window.pageYOffset;
+	
+		if(navElementPositionTop < pixels) { 
+			navBar.classList.add("sticky");
+		} else {
+			navBar.classList.remove("sticky");
+		}
+
+	});
+        
+        gameRulesDiv.classList.add("visible");
+        window.scrollTo(0,gameRulesDivPositionTop);
+    })
 	
 });
