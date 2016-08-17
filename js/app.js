@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function(){
     var btnStop  = document.querySelector("#stop");
     var divAlert = document.querySelectorAll(".alert");
     var navPoints = document.querySelector(".points");
+    var levelDiv = navPoints.firstElementChild;
     var scoreDiv = navPoints.lastElementChild;
     var parAlert = divAlert[0].firstElementChild;
     
@@ -21,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function(){
 	var direction;
 	var coin;
 	var score = 0;
+    var level = 1;
 	
 	var snake; 
     var interval = 120;
@@ -34,7 +36,6 @@ document.addEventListener("DOMContentLoaded", function(){
     }, false);
     
 	function init(){
-        
         //Initialize game
 		direction = "right"; //default direction
 		drawSnakeBody();
@@ -53,17 +54,29 @@ document.addEventListener("DOMContentLoaded", function(){
 	};
     
     function levels() {
-         //Level 2
+        
+        //Change the number of level
+        var level_text = "Level " + level;
+            levelDiv.innerText = level_text;
+        
+        //Level 2
         if (score > 4 && score <= 8) { 
+            clearInterval(game_loop);
             interval = 90;
-            console.log("szybciej");
-//            game_loop = setInterval(createElements, interval);
+            game_loop = setInterval(createElements, interval);
+            level = 2;
+        //Level 3
         } else if (score > 8 && score <= 12) {
-            interval = 70;  
-            console.log("2");
-	    } else if (score > 12 && score <= 16) {
-            interval = 50;
-            console.log("3");
+            clearInterval(game_loop);
+            interval = 75;  
+            game_loop = setInterval(createElements, interval);
+            level = 3;
+        //Level 4
+	    } else if (score > 12) {
+            clearInterval(game_loop);
+            interval = 55;
+            game_loop = setInterval(createElements, interval);
+            level = 4;
         };
     }
     
@@ -140,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function(){
 			score++;
 			//Create new coin
 			drawCoin();
-//            levels();
+            
 		} else {
 			var snakeTail = snake.pop(); 
 			snakeTail.x = snakePositionX; snakeTail.y = snakePositionY;
@@ -161,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function(){
 		//Add text in scoreDic when snake takes coins
 		var score_text = "Score: " + score;
         scoreDiv.innerText = score_text;
-        
+        levels();
        
     };
 	
