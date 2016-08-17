@@ -25,11 +25,12 @@ document.addEventListener("DOMContentLoaded", function(){
 	var snake; 
     var interval = 120;
     
-	window.addEventListener("keydown", function(e) {
-    // space and arrow keys
-    if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
-        e.preventDefault();
-    }
+    //event prevent scrolling page
+	window.addEventListener("keydown",         function(event) {
+        // space and arrow keys
+            if([32, 37, 38, 39, 40].indexOf(event.keyCode) > -1) {
+            event.preventDefault();
+            }
     }, false);
     
 	function init(){
@@ -46,7 +47,8 @@ document.addEventListener("DOMContentLoaded", function(){
         btnStop.addEventListener("click", function(event) {
             clearInterval(game_loop);
             score = 0;
-        })
+        });
+        
         
 	};
     
@@ -65,6 +67,7 @@ document.addEventListener("DOMContentLoaded", function(){
         };
     }
     
+    //when btnStart is pushed, restart game
     btnStart.addEventListener("click", function(event) {
         
         for(var i=0; i < divAlert.length; i++) {
@@ -198,11 +201,31 @@ document.addEventListener("DOMContentLoaded", function(){
 		
         //The keyboard controls: STOP and RESET
         
+        
+        //when key "space" is pushed stop game
         if(key == "32") {
             clearInterval(game_loop);
             score = 0;
             return;
         }; 
+        
+        
+        //when hey "enter" is pushed start game
+        if(key == "13") {
+            for(var i=0; i < divAlert.length; i++) {
+            
+                divAlert[i].classList.remove("alert");
+                divAlert[i].classList.add("alert-move");
+
+                
+                btnStop.classList.remove("hidden"); navPoints.firstElementChild.classList.remove("hidden");
+                navPoints.lastElementChild.classList.remove("hidden");
+                init();  
+
+                parAlert.parentNode.removeChild(parAlert);
+            }
+        }; 
+        
         
 	})
 	
