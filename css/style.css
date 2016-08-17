@@ -37,6 +37,7 @@ body {
     color: #DC3D24;
     font-family: 'OSP-DIN', 'Arial', 'sans-serif';
     
+    
 }
 
 .container {
@@ -96,7 +97,6 @@ canvas {
     background-color: #E3AE57;
     margin: 0 auto;
     display: flex;
-    
 }
 
 

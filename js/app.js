@@ -23,20 +23,24 @@ document.addEventListener("DOMContentLoaded", function(){
 	var score = 0;
 	
 	var snake; 
+    var interval = 120;
     
-	
+	window.addEventListener("keydown", function(e) {
+    // space and arrow keys
+    if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+        e.preventDefault();
+    }
+    }, false);
+    
 	function init(){
         
         //Initialize game
 		direction = "right"; //default direction
 		drawSnakeBody();
-		drawCoin(); 
-		
-		//Set interval for moving snake   
-        if(typeof game_loop != "undefined"){ clearInterval(game_loop);
-        };
-            
-        game_loop = setInterval(createElements, 120);
+		drawCoin();         
+        
+        //Level 1
+        game_loop = setInterval(createElements, interval); 
        
         //When btnStop is down, stop and restart game; reset var score                         
         btnStop.addEventListener("click", function(event) {
@@ -45,6 +49,21 @@ document.addEventListener("DOMContentLoaded", function(){
         })
         
 	};
+    
+    function levels() {
+         //Level 2
+        if (score > 4 && score <= 8) { 
+            interval = 90;
+            console.log("szybciej");
+//            game_loop = setInterval(createElements, interval);
+        } else if (score > 8 && score <= 12) {
+            interval = 70;  
+            console.log("2");
+	    } else if (score > 12 && score <= 16) {
+            interval = 50;
+            console.log("3");
+        };
+    }
     
     btnStart.addEventListener("click", function(event) {
         
@@ -67,8 +86,7 @@ document.addEventListener("DOMContentLoaded", function(){
 		var length = 3; //base lenght of snake
 		snake = []; 
         
-		for(var i = length-1; i>=0; i--)
-		{
+		for(var i = length-1; i>=0; i--){
 			snake.push({x: i, y:0});
 		}
 	};
@@ -81,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 x: Math.floor(Math.random() * (widthBoard/cellSize)),
                 y: Math.floor(Math.random() * (heighBoard/cellSize))};
             
-	}
+	};
 	
 	
 	function createElements(){
@@ -106,33 +124,29 @@ document.addEventListener("DOMContentLoaded", function(){
         }
 		
 		//Collision statement - if snake is on the border of canvas - reset game
-		if(snakePositionX == -1 || snakePositionX == widthBoard/cellSize || snakePositionY == -1 || snakePositionY == heighBoard/cellSize || checkCollision(snakePositionX, snakePositionY, snake))
-		{
+		if(snakePositionX == -1 || snakePositionX == widthBoard/cellSize || snakePositionY == -1 || snakePositionY == heighBoard/cellSize || checkCollision(snakePositionX, snakePositionY, snake)){
 			alert("Game over");
             score = 0;
-//            init();  
+            init();  
             return;
 		}
 		
 		//Snake collect the coin
-		if(snakePositionX == coin.x && snakePositionY == coin.y)
-		{
+		if(snakePositionX == coin.x && snakePositionY == coin.y){
 			var snakeTail = {x: snakePositionX, y: snakePositionY};
 			score++;
 			//Create new coin
 			drawCoin();
-		}
-		else
-		{
+//            levels();
+		} else {
 			var snakeTail = snake.pop(); 
 			snakeTail.x = snakePositionX; snakeTail.y = snakePositionY;
-		}
+		};
 		
 		
 		snake.unshift(snakeTail); //puts back the snakeTail as the first cell
 		
-		for(var i = 0; i < snake.length; i++)
-		{
+		for(var i = 0; i < snake.length; i++){
 			var cell = snake[i];
 			//Lets createElements 10px wide cells
 			createCell(cell.x, cell.y);
@@ -143,9 +157,10 @@ document.addEventListener("DOMContentLoaded", function(){
         
 		//Add text in scoreDic when snake takes coins
 		var score_text = "Score: " + score;
-//		ctx.fillText(score_text, 5, heighBoard-5);
         scoreDiv.innerText = score_text;
-	}
+        
+       
+    };
 	
 	
 	function createCell(x, y){ 
@@ -166,23 +181,29 @@ document.addEventListener("DOMContentLoaded", function(){
 		return false;
 	}
 	
-	//Lets add the keyboard controls now
+	//The keyboard controls 
 	document.addEventListener("keydown", function(event){
         
         //By this event we can controll position of snake
 		var key = event.which;
 		
-		if(key == "37" && direction != "right") direction = "left";
-		else if(key == "38" && direction != "down") direction = "up";
-		else if(key == "39" && direction != "left") direction = "right";
-		else if(key == "40" && direction != "up") direction = "down";
+		if(key == "37" && direction != "right") {
+            direction = "left";
+        } else if(key == "38" && direction != "down") {
+            direction = "up";
+        } else if(key == "39" && direction != "left") {
+            direction = "right";
+        } else if(key == "40" && direction != "up") {
+            direction = "down";}
 		
+        //The keyboard controls: STOP and RESET
+        
+        if(key == "32") {
+            clearInterval(game_loop);
+            score = 0;
+            return;
+        }; 
+        
 	})
 	
-	
-	
-	
-	
-	
-	
-})
+});
