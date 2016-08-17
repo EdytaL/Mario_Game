@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function(){
     var gameRulesDivPositionTop = gameRulesDiv.offsetTop;
     
     
+    
     //Variables game field
 	var widthBoard = 350;
 	var heighBoard = 350;
@@ -97,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function(){
         navPoints.lastElementChild.classList.remove("hidden");
         init();  
         
-        parAlert.parentNode.removeChild(parAlert);
+        parAlert.style.display="none";
     })
 	
 	
@@ -145,10 +146,18 @@ document.addEventListener("DOMContentLoaded", function(){
 		
 		//Collision statement - if snake is on the border of canvas - reset game
 		if(snakePositionX == -1 || snakePositionX == widthBoard/cellSize || snakePositionY == -1 || snakePositionY == heighBoard/cellSize || checkCollision(snakePositionX, snakePositionY, snake)){
-			alert("Game over");
+            
+            clearInterval(game_loop);
+            parAlert.style.display="block";
+            parAlert.innerText="Game Over! Press START to play again.";
+            parAlert.style.position="absolute";
+            parAlert.style.right="230px";
+            parAlert.style.width="250px";
+            parAlert.style.fontSize="32px";
+            parAlert.style.zIndex="10";
             score = 0;
-            init();  
-            return;
+            level = 1;
+
 		}
 		
 		//Snake collect the coin
@@ -217,9 +226,7 @@ document.addEventListener("DOMContentLoaded", function(){
             direction = "down";}
 		
         //The keyboard controls: STOP and RESET
-        
-        
-        //when key "space" is pushed stop game
+        //When key "space" is pressed stop game
         if(key == "32") {
             clearInterval(game_loop);
             score = 0;
@@ -227,7 +234,7 @@ document.addEventListener("DOMContentLoaded", function(){
         }; 
         
         
-        //when hey "enter" is pushed start game
+        //when key "enter" is pressed start game
         if(key == "13") {
             for(var i=0; i < divAlert.length; i++) {
             
@@ -239,7 +246,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 navPoints.lastElementChild.classList.remove("hidden");
                 init();  
 
-                parAlert.parentNode.removeChild(parAlert);
+                parAlert.style.display="none";
             }
         }; 
         
