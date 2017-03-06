@@ -23,23 +23,16 @@
 	font-weight: 500;
 	font-style: normal;
 }
-
-
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 body {
     background-color: #232B2B;
     color: #DC3D24;
-    font-family: 'OSP-DIN', 'Arial', 'sans-serif';
-    
-    
+    font-family: 'OSP-DIN', 'Arial', 'sans-serif';   
 }
-
 .container {
     position: relative;
     width: 800px;
@@ -47,33 +40,25 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    
+    flex-direction: column;   
 }
-
 header {
-    
     text-align: center;
     transform: skew(10deg, -15deg);
     margin-bottom: 30px;
 }
-
 header p {
     font-family: 'Yellowtail', 'Arial', 'sans-serif';
     font-size: 80px;
     font-weight: bold;
-    padding: 0;
-    
+    padding: 0;   
 }
-
-header h3 {
-    
+header h3 {   
     font-size: 20px;
     font-weight: normal;
     letter-spacing: 5px;
     text-transform: uppercase;
 }
-
 nav {
     display: flex;
     justify-content: space-around;
@@ -81,22 +66,17 @@ nav {
     padding-top: 30px;
     padding-bottom: 30px;
 }
-
 nav a {
     text-decoration: none;
     color: white;
 }
-    
-
-nav .myButton {
-    
+nav .myButton {   
     margin-left: 0;
     width: 150px;
     padding-left: 15px;
     padding-right: 15px;
     text-align: center;
 }
-
 .game_rules {
     margin-top: 50px;
     font-size: 28px;
@@ -106,23 +86,12 @@ nav .myButton {
     width: 500px;
     visibility: hidden;
 }
-
 .game_rules p{
-    margin-top: 50px;
+    margin-top: 20px;
 }
-
 .visible {
     visibility: visible;
 }
-/*--------sticky menu-----------------*/
-.sticky{
-    position: fixed;
-    top: 280px;
-    left: 400px;
-    z-index: 10;
-}
-
-/*-----------------------------------*/
 canvas {
     position: relative; 
     border: 1px solid #DC3D24;
@@ -133,8 +102,6 @@ canvas {
     margin: 0 auto;
     display: flex;
 }
-
-
 /*buttons' class*/
     .myButton {
 	-moz-box-shadow:inset 0px 1px 0px 0px #cf866c;
@@ -152,7 +119,6 @@ canvas {
 	-webkit-border-radius:3px;
 	border-radius:3px;
 	border:1px solid #942911;
-/*	display:inline-block;*/
 	cursor:pointer;
 	color:#ffffff;
 	font-family: 'OSP-DIN', 'Arial', 'sans-serif';
@@ -176,7 +142,15 @@ canvas {
 	position:relative;
 	top:1px;
 }
-
+#back {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#back a {
+    color: #fff;
+    text-decoration: none;
+}
 div {
     display: table;
 }
@@ -193,7 +167,6 @@ div {
     text-align: center;
     font-size: 25px;
 }
-
 .alert-move {
     position: absolute;
     right: 50px;
@@ -201,8 +174,7 @@ div {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    text-align: center;
-    
+    text-align: center;   
 }
 .alert-move button{
     margin-top: 10px;
@@ -210,8 +182,6 @@ div {
     height: 40px;
     font-size: 24px;
 }
-
-
 .points {
     position: absolute;
     left: 50px;
@@ -222,14 +192,12 @@ div {
     text-align: center;
     padding: 0;
 }
-
 .points div {
     margin-top: 10px;
     width: 150px;
     height: 40px;
     font-size: 24px;
 }
-
 .hidden {
     display: none;
 }

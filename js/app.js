@@ -15,8 +15,7 @@ document.addEventListener("DOMContentLoaded", function(){
     var gameRulesBtn = document.querySelector(".rules");
     var gameRulesDiv = document.querySelector(".game_rules");
     var gameRulesDivPositionTop = gameRulesDiv.offsetTop;
-    
-    
+    var btnBack = document.getElementById("back");
     
     //Variables game field
 	var widthBoard = 350;
@@ -49,13 +48,11 @@ document.addEventListener("DOMContentLoaded", function(){
         //Level 1
         game_loop = setInterval(createElements, interval); 
        
-        //When btnStop is down, stop and restart game; reset var score                         
+        //When btnStop is down, stop and restart game; reset var score                  
         btnStop.addEventListener("click", function(event) {
             clearInterval(game_loop);
             score = 0;
         });
-        
-        
 	};
     
     function levels() {
@@ -132,7 +129,6 @@ document.addEventListener("DOMContentLoaded", function(){
 		var snakePositionX = snake[0].x;
 		var snakePositionY = snake[0].y;
 		
-        
         //Statements -  move snake depend of keydown
 		if (direction == "right"){            
             snakePositionX++;
@@ -142,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function(){
             snakePositionY--;
         } else if(direction == "down"){      
             snakePositionY++;
-        }
+        };
 		
 		//Collision statement - if snake is on the border of canvas - reset game
 		if(snakePositionX == -1 || snakePositionX == widthBoard/cellSize || snakePositionY == -1 || snakePositionY == heighBoard/cellSize || checkCollision(snakePositionX, snakePositionY, snake)){
@@ -157,8 +153,7 @@ document.addEventListener("DOMContentLoaded", function(){
             parAlert.style.zIndex="10";
             score = 0;
             level = 1;
-
-		}
+		};
 		
 		//Snake collect the coin
 		if(snakePositionX == coin.x && snakePositionY == coin.y){
@@ -166,12 +161,10 @@ document.addEventListener("DOMContentLoaded", function(){
 			score++;
 			//Create new coin
 			drawCoin();
-            
 		} else {
 			var snakeTail = snake.pop(); 
 			snakeTail.x = snakePositionX; snakeTail.y = snakePositionY;
 		};
-		
 		
 		snake.unshift(snakeTail); //puts back the snakeTail as the first cell
 		
@@ -179,8 +172,7 @@ document.addEventListener("DOMContentLoaded", function(){
 			var cell = snake[i];
 			//Lets createElements 10px wide cells
 			createCell(cell.x, cell.y);
-		}
-		
+		};
 		
 		createCell(coin.x, coin.y);
         
@@ -188,9 +180,7 @@ document.addEventListener("DOMContentLoaded", function(){
 		var score_text = "Score: " + score;
         scoreDiv.innerText = score_text;
         levels();
-       
     };
-	
 	
 	function createCell(x, y){ 
         //Draw elements of the body of snake
@@ -198,17 +188,15 @@ document.addEventListener("DOMContentLoaded", function(){
 		ctx.fillRect(x*cellSize, y*cellSize, cellSize, cellSize);
 		ctx.strokeStyle = "white";
 		ctx.strokeRect(x*cellSize, y*cellSize, cellSize, cellSize);
-	}
+	};
 	
-	function checkCollision(x, y, array){
-		
-		for(var i = 0; i < array.length; i++)
-		{
+	function checkCollision(x, y, array){	
+		for(var i = 0; i < array.length; i++){
 			if(array[i].x == x && array[i].y == y)
 			 return true;
-		}
+		};
 		return false;
-	}
+	};
 	
 	//The keyboard controls 
 	document.addEventListener("keydown", function(event){
@@ -223,7 +211,8 @@ document.addEventListener("DOMContentLoaded", function(){
         } else if(key == "39" && direction != "left") {
             direction = "right";
         } else if(key == "40" && direction != "up") {
-            direction = "down";}
+            direction = "down";
+        };
 		
         //The keyboard controls: STOP and RESET
         //When key "space" is pressed stop game
@@ -232,49 +221,28 @@ document.addEventListener("DOMContentLoaded", function(){
             score = 0;
             return;
         }; 
-        
-        
+                
         //when key "enter" is pressed start game
         if(key == "13") {
             for(var i=0; i < divAlert.length; i++) {
             
                 divAlert[i].classList.remove("alert");
                 divAlert[i].classList.add("alert-move");
-
-                
                 btnStop.classList.remove("hidden"); navPoints.firstElementChild.classList.remove("hidden");
                 navPoints.lastElementChild.classList.remove("hidden");
                 init();  
-
                 parAlert.style.display="none";
-            }
+            };
         }; 
-        
-        
-	})
-    
-    
-    
-    
-    //event on game's rules btn - scroll to game's description
-    gameRulesBtn.addEventListener("click", function(event) {
-        
-        //event for sticky menu
-
-        window.addEventListener("scroll", function(event) {
-
-        var pixels = window.pageYOffset;
-	
-		if(navElementPositionTop < pixels) { 
-			navBar.classList.add("sticky");
-		} else {
-			navBar.classList.remove("sticky");
-		}
-
 	});
         
+    //event on game's rules btn - scroll to game's description
+    gameRulesBtn.addEventListener("click", function(event) {        
         gameRulesDiv.classList.add("visible");
         window.scrollTo(0,gameRulesDivPositionTop);
-    })
-	
+    });
+    btnBack.addEventListener("click", function(event) { 
+        gameRulesDiv.classList.remove("visible");
+        window.scrollTo(0,0);
+    });
 });
